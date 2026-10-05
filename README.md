@@ -2,6 +2,14 @@
 
 CareBridge AI is an India-specific decision-support and information platform designed to solve the financial and informational uncertainty patients and their families face during hospital admission.
 
+## Screenshots
+
+![Dashboard](./public/screenshot.png)
+*(UI prototype built during development showcasing the CareBridge Dashboard, Upload, Analysis, and Summaries.)*
+
+![Mobile View](./public/screenshot-mobile.png)
+*(Mobile view mockup)*
+
 ## Problem Statement
 
 Although people may have private insurance, employer insurance, or government schemes, actual policy information is usually buried inside lengthy PDFs and complicated terms. During an emergency, families often don't know:
@@ -45,13 +53,3 @@ npm run dev
 ```bash
 npm run build
 ```
-
-## Screenshots
-
-![Dashboard](./public/screenshot.png)
-
-*(UI prototype built during development showcasing the CareBridge Dashboard, Upload, Analysis, and Summaries.)*
-
-![Mobile View](./public/screenshot-mobile.png)
-
-*(Mobile view mockup)*
