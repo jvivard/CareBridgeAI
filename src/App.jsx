@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { 
   Home, FileText, Activity, CreditCard, HelpCircle, ArrowRight, User, 
   Settings, MessageCircle, UploadCloud, CheckCircle2, AlertCircle, XCircle,
-  File, FileImage, ShieldCheck, PieChart, Info, MapPin, Search, Bell
+  File, FileImage, ShieldCheck, PieChart, Info, MapPin, Search, Bell, Menu
 } from 'lucide-react';
 import './App.css';
 
 function App() {
+  const [showNotifications, setShowNotifications] = useState(true);
+  
   return (
     <div className="app-container">
       {/* Sidebar */}
@@ -37,14 +39,122 @@ function App() {
       </aside>
 
       {/* Main Content */}
-      <main className="main-content">
+      <main className="main-content" style={{ position: 'relative' }}>
         <header className="top-bar">
-          <Bell size={20} className="text-secondary" style={{ cursor: 'pointer' }} />
+          <div style={{ position: 'relative', cursor: 'pointer' }} onClick={() => setShowNotifications(!showNotifications)}>
+            <Bell size={20} className="text-secondary" />
+            <span style={{ position: 'absolute', top: '-4px', right: '-4px', backgroundColor: 'var(--danger)', color: 'white', fontSize: '0.6rem', fontWeight: 'bold', width: '14px', height: '14px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>2</span>
+          </div>
           <div className="user-profile">
             <div className="avatar">P</div>
             <span className="font-medium text-sm">Patient</span>
           </div>
         </header>
+
+        {showNotifications && (
+          <div style={{ position: 'absolute', top: '70px', right: '30px', width: '380px', backgroundColor: 'white', borderRadius: '12px', boxShadow: '0 10px 25px rgba(0,0,0,0.1)', zIndex: 100, border: '1px solid var(--border)', maxHeight: 'calc(100vh - 100px)', overflowY: 'auto' }}>
+            {/* Header */}
+            <div className="flex justify-between items-center" style={{ padding: '1rem 1.25rem', borderBottom: '1px solid var(--border)' }}>
+              <h3 className="font-semibold text-sm">Notifications</h3>
+              <a href="#" className="text-primary text-xs font-medium" style={{ textDecoration: 'none' }}>Mark all as read</a>
+            </div>
+            
+            {/* Notification list */}
+            <div style={{ padding: '1rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              <div className="notification-card danger" style={{ margin: 0, border: 'none', backgroundColor: '#fef2f2', padding: '1rem', borderRadius: '8px' }}>
+                <div className="flex gap-3">
+                  <XCircle className="text-danger flex-shrink-0" size={20} />
+                  <div>
+                    <div className="flex justify-between items-center mb-1">
+                      <h4 className="text-danger font-semibold text-xs">Hospital not covered under your policy</h4>
+                      <span className="text-xs text-secondary" style={{ fontSize: '0.65rem' }}>2 min ago</span>
+                    </div>
+                    <p className="text-xs" style={{ color: '#475569', marginBottom: '0.5rem', lineHeight: 1.4 }}>Navchethana Hospital, Bannerghatta Road is not in your insurance network. Treatments here may not be eligible for cashless benefits.</p>
+                    <button className="btn-secondary text-xs" style={{ padding: '4px 12px', color: '#b91c1c', borderColor: '#fca5a5', backgroundColor: '#fef2f2' }}>View Alternatives</button>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="notification-card info" style={{ margin: 0, border: 'none', backgroundColor: '#eff6ff', padding: '1rem', borderRadius: '8px' }}>
+                <div className="flex gap-3">
+                  <Info className="text-primary flex-shrink-0" size={20} />
+                  <div>
+                    <div className="flex justify-between items-center mb-1">
+                      <h4 className="font-semibold text-xs">Better alternative available</h4>
+                      <span className="text-xs text-secondary" style={{ fontSize: '0.65rem' }}>5 min ago</span>
+                    </div>
+                    <p className="text-xs" style={{ color: '#475569', marginBottom: '0.5rem', lineHeight: 1.4 }}>Manipal Hospital (5.2 km) is a network hospital and eligible for cashless treatment.</p>
+                    <a href="#" className="text-primary text-xs font-medium" style={{ textDecoration: 'none' }}>View Hospital Details</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div style={{ padding: '0 1rem 1rem' }}>
+              <div style={{ height: '120px', backgroundColor: '#e2e8f0', backgroundImage: 'url(https://images.unsplash.com/photo-1587351021759-3e566d6af7bf?w=800&q=80)', backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '8px', marginBottom: '1rem', position: 'relative', overflow: 'hidden' }}>
+                 <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '40px', background: 'linear-gradient(transparent, rgba(0,0,0,0.8))' }}></div>
+                 <div style={{ position: 'absolute', bottom: '8px', left: '12px', color: 'white', fontWeight: 600, fontSize: '0.8rem' }}>Navchethana Hospital</div>
+              </div>
+              
+              <div style={{ backgroundColor: '#fef2f2', padding: '0.75rem', borderRadius: '8px', marginBottom: '1rem' }}>
+                 <div className="flex items-center gap-2 mb-1">
+                   <XCircle className="text-danger" size={14} />
+                   <h4 className="text-danger font-semibold text-xs">Not Covered Under Your Policy</h4>
+                 </div>
+                 <p style={{ fontSize: '0.7rem', color: '#7f1d1d', lineHeight: 1.4, paddingLeft: '22px' }}>Navchethana Hospital, Bannerghatta Road is not in your insurance network. Cashless treatment may not be available.</p>
+              </div>
+
+              <div style={{ backgroundColor: '#f8fafc', padding: '0.75rem', borderRadius: '8px', border: '1px solid var(--border)', marginBottom: '1rem' }}>
+                <div className="flex items-center gap-2 mb-2">
+                  <FileText className="text-primary" size={14} />
+                  <h4 className="font-semibold text-xs">Why is this hospital not covered?</h4>
+                </div>
+                <ul style={{ paddingLeft: '1.75rem', fontSize: '0.7rem', color: 'var(--text-secondary)', display: 'flex', flexDirection: 'column', gap: '0.25rem', margin: 0 }}>
+                  <li>This hospital is not listed in your policy's network provider list.</li>
+                  <li>Cashless treatment is not available.</li>
+                  <li>You may need to pay the full amount upfront and claim reimbursement later (as per policy terms).</li>
+                </ul>
+              </div>
+
+              <div style={{ backgroundColor: '#f0f9ff', padding: '0.75rem', borderRadius: '8px', border: '1px solid #bae6fd' }}>
+                <div className="flex items-start gap-2 mb-3">
+                  <AlertCircle className="text-primary mt-1" size={14} />
+                  <div>
+                    <h4 className="text-primary font-semibold text-xs">Recommended Alternatives</h4>
+                    <p style={{ fontSize: '0.65rem' }} className="text-secondary">Here are nearby network hospitals:</p>
+                  </div>
+                </div>
+                
+                <div className="flex-col gap-2">
+                  <div className="hospital-pill" style={{ padding: '0.5rem', marginBottom: '0.4rem' }}>
+                    <span className="font-medium text-xs">Manipal Hospital</span>
+                    <div className="flex items-center gap-2">
+                      <span className="text-secondary flex items-center gap-1" style={{ fontSize: '0.65rem' }}><MapPin size={10}/> 5.2 km</span>
+                      <span className="text-success bg-success-light" style={{ padding: '2px 6px', borderRadius: '12px', fontSize: '0.65rem' }}>Network Hospital</span>
+                      <ArrowRight size={12} className="text-secondary" />
+                    </div>
+                  </div>
+                  <div className="hospital-pill" style={{ padding: '0.5rem', marginBottom: '0.4rem' }}>
+                    <span className="font-medium text-xs">Apollo Hospital</span>
+                    <div className="flex items-center gap-2">
+                      <span className="text-secondary flex items-center gap-1" style={{ fontSize: '0.65rem' }}><MapPin size={10}/> 6.8 km</span>
+                      <span className="text-success bg-success-light" style={{ padding: '2px 6px', borderRadius: '12px', fontSize: '0.65rem' }}>Network Hospital</span>
+                      <ArrowRight size={12} className="text-secondary" />
+                    </div>
+                  </div>
+                  <div className="hospital-pill" style={{ padding: '0.5rem', marginBottom: 0 }}>
+                    <span className="font-medium text-xs">Narayana Health City</span>
+                    <div className="flex items-center gap-2">
+                      <span className="text-secondary flex items-center gap-1" style={{ fontSize: '0.65rem' }}><MapPin size={10}/> 12.4 km</span>
+                      <span className="text-success bg-success-light" style={{ padding: '2px 6px', borderRadius: '12px', fontSize: '0.65rem' }}>Network Hospital</span>
+                      <ArrowRight size={12} className="text-secondary" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
         <div className="content-grid">
           {/* Left / Center Column */}
