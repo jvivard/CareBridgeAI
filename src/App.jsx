@@ -7,7 +7,7 @@ import {
 import './App.css';
 
 function App() {
-  const [showNotifications, setShowNotifications] = useState(true);
+  const [showNotifications, setShowNotifications] = useState(false);
   
   return (
     <div className="app-container">
