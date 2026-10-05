@@ -1,16 +1,53 @@
-# React + Vite
+# CareBridge AI
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+CareBridge AI is an India-specific decision-support and information platform designed to solve the financial and informational uncertainty patients and their families face during hospital admission.
 
-Currently, two official plugins are available:
+## Problem Statement
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Although people may have private insurance, employer insurance, or government schemes, actual policy information is usually buried inside lengthy PDFs and complicated terms. During an emergency, families often don't know:
+- Which hospitals are covered
+- Whether the hospital is cashless or in-network
+- What room category they are eligible for
+- Which procedures or consumables are reimbursable
+- What deductions or exclusions apply
 
-## React Compiler
+## Solution: The Understand → Analyse → Guide Flow
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+CareBridge AI acts as an insurance-aware financial decision-support layer. The frontend is centered around a **simple, calm, and highly visual dashboard**.
 
-## Expanding the Oxlint configuration
+1. **Understand**: The interface shows uploaded documents and an AI-generated structured summary of what the policy actually says.
+2. **Analyse**: The extracted information is passed into a deterministic policy engine, where policy rules such as room limits, exclusions, coverage restrictions, and deductibles are evaluated.
+3. **Guide**: The frontend turns those results into actionable financial information: estimated covered amounts, possible out-of-pocket expenses, relevant hospital and room eligibility, and next steps.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## Technical Architecture
+
+Documents enter the system → AI extracts and understands their contents → structured policy information is generated → a deterministic Policy Engine evaluates the rules → financial impact is calculated → the frontend explains the result.
+
+## Development Setup
+
+This project uses React and Vite.
+
+### Prerequisites
+- Node.js (v16 or higher)
+- npm or yarn
+
+### Installation
+```bash
+npm install
+```
+
+### Running Locally
+```bash
+npm run dev
+```
+
+### Building for Production
+```bash
+npm run build
+```
+
+## Screenshots
+
+![Dashboard](./public/screenshot.png)
+
+*(UI prototype built during development showcasing the CareBridge Dashboard, Upload, Analysis, and Summaries.)*
