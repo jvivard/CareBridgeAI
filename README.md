@@ -7,8 +7,7 @@ CareBridge AI is an India-specific decision-support and information platform des
 ![Dashboard](./public/screenshot.png)
 *(UI prototype built during development showcasing the CareBridge Dashboard, Upload, Analysis, and Summaries.)*
 
-![Mobile View](./public/screenshot-mobile.png)
-*(Mobile view mockup)*
+
 
 ## Problem Statement
 
