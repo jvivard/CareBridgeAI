@@ -456,3 +456,45 @@ tr:last-child td { border-bottom: none; }
   margin-bottom: 0.5rem;
   background-color: white;
 }
+
+/* Responsive Styles */
+@media (max-width: 900px) {
+  .app-container {
+    flex-direction: column;
+    overflow-y: auto;
+  }
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+  }
+  .sidebar nav, .sidebar .help-card {
+    display: none;
+  }
+  .brand {
+    margin-bottom: 0;
+  }
+  .main-content {
+    overflow-y: visible;
+  }
+  .content-grid {
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+  }
+  .right-column {
+    width: 100%;
+  }
+  .top-bar {
+    padding: 1rem;
+  }
+  .tabs {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 0.25rem;
+  }
+}
